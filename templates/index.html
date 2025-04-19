@@ -1,0 +1,60 @@
+<!-- templates/index.html -->
+{% extends "base.html" %} {% block title %}Daftar Data - Aplikasi CRUDS{%
+endblock %} {% block header %}Daftar Data{% endblock %} {% block content %}
+<div class="actions">
+  <a href="/create" class="btn btn-primary">Tambah Data Baru</a>
+
+  <form action="/" method="get" class="search-form">
+    <input
+      type="text"
+      name="search"
+      placeholder="Cari berdasarkan nama atau email"
+      value="{{ search or '' }}"
+    />
+    <button type="submit" class="btn btn-search">Cari</button>
+    {% if search %}
+    <a href="/" class="btn btn-reset">Reset</a>
+    {% endif %}
+  </form>
+</div>
+
+{% if people %}
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Nama</th>
+      <th>Email</th>
+      <th>Pekerjaan</th>
+      <th>Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for person in people %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ person.nama }}</td>
+      <td>{{ person.email }}</td>
+      <td>{{ person.pekerjaan }}</td>
+      <td class="actions">
+        <a href="/edit/{{ person.id }}" class="btn btn-edit">Edit</a>
+        <a
+          href="/delete/{{ person.id }}"
+          class="btn btn-delete"
+          onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"
+          >Hapus</a
+        >
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="empty-state">
+  {% if search %}
+  <p>Tidak ada data yang sesuai dengan pencarian "{{ search }}"</p>
+  {% else %}
+  <p>Belum ada data. Silakan tambahkan data baru.</p>
+  {% endif %}
+</div>
+{% endif %} {% endblock %}

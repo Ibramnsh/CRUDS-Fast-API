@@ -1,0 +1,27 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Aplikasi CRUDS FastAPI{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='styles.css') }}" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>{% block header %}Aplikasi CRUDS dengan FastAPI{% endblock %}</h1>
+      </header>
+
+      {% if message %}
+      <div class="alert">{{ message }}</div>
+      {% endif %}
+
+      <main>{% block content %}{% endblock %}</main>
+
+      <footer>
+        <p>&copy; 2025 - Aplikasi CRUDS dengan FastAPI dan Jinja2</p>
+      </footer>
+    </div>
+  </body>
+</html>

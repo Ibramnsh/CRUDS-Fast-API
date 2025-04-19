@@ -1,0 +1,45 @@
+<!-- templates/edit.html -->
+{% extends "base.html" %} {% block title %}Edit Data - Aplikasi CRUDS{% endblock
+%} {% block header %}Edit Data{% endblock %} {% block content %}
+<div class="form-container">
+  <form action="/edit/{{ person.id }}" method="post">
+    <div class="form-group">
+      <label for="nama">Nama</label>
+      <input
+        type="text"
+        name="nama"
+        id="nama"
+        value="{{ person.nama }}"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        value="{{ person.email }}"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="pekerjaan">Pekerjaan</label>
+      <input
+        type="text"
+        name="pekerjaan"
+        id="pekerjaan"
+        value="{{ person.pekerjaan }}"
+        required
+      />
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Perbarui</button>
+      <a href="/" class="btn btn-secondary">Batal</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
